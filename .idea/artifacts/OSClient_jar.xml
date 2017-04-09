@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="OSClient:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/OSClient_jar</output-path>
+    <root id="archive" name="OSClient.jar">
+      <element id="module-output" name="OSClient" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/Java Libraries/commons-cli-1.4/commons-cli-1.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
