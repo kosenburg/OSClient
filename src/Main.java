@@ -3,13 +3,15 @@ import rpccommands.RPCCommand;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     private static Options commandOptions;
     private static CommandLineParser cmdParser;
     private static HelpFormatter helpList;
     private static CommandLine commandLine = null;
-    private static final String allowedCommands = "copy,tail,append,shutdown";
+    private static final String allowedCommands = "copy,tail,shutdown";
 
     private static int portNumber = 60010;
     private static String serverIP = "127.0.0.1";
@@ -22,9 +24,15 @@ public class Main {
         checkForHelpRequest();
 
 
-        RPCCommand command = RPCCommand.getCommand(commandLine);
-        executeCommand(command);
-    }
+        Scanner inputReader = new Scanner(System.in);
+        String input = "";
+        while (!input.equals("stop")) {
+            System.out.println("Enter your command:");
+            input = inputReader.nextLine();
+            parseCommandArguments(input.split(" "));
+            RPCCommand command = RPCCommand.getCommand(commandLine);
+            executeCommand(command);
+        }    }
 
     private static void executeCommand(RPCCommand command) {
         try {
@@ -42,7 +50,7 @@ public class Main {
 
     private static void setCommandOptions() {
         Option option = new Option("c", "command",true,"Remote command you would like executed " + allowedCommands);
-        option.setRequired(true);
+        //option.setRequired(true);
         commandOptions.addOption(option);
 
         option = new Option("f", "file", true, "The file you want to execute the command on");

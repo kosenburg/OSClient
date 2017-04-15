@@ -31,11 +31,12 @@ public abstract class RPCCommand {
 
     private static String getOptionValue(String option) {
         String commandOption = commandLineOptions.getOptionValue(option);
+        System.out.println(commandOption);
 
         if (commandOption != null) {
             return commandOption;
         } else {
-            throw new IllegalArgumentException();
+            return "N/A";
         }
     }
 
