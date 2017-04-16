@@ -40,7 +40,18 @@ public class OutputManager {
     }
 
     public void display(InputStream input) {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
+            if (!isError(reader.readLine())) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line.trim());
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Issue writing displaying the output due to: " + e.getMessage());
+        }
     }
 
     public void appendTo(String fileLocation, InputStream input) {

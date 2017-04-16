@@ -12,10 +12,9 @@ import java.net.Socket;
  */
 public class RPCDelete extends RPCCommand {
     private String remoteFile;
-    private String localFile;
     private Socket socket;
 
-    public RPCDelete(String remoteFile, String localFile) {
+    public RPCDelete(String remoteFile) {
         setRemoteFile(remoteFile);
     }
 
@@ -36,7 +35,7 @@ public class RPCDelete extends RPCCommand {
 
     private void sendMessage() throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-        writer.write("delete," + remoteFile);
+        writer.write("remove," + remoteFile);
         writer.newLine();
         writer.flush();
     }

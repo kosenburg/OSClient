@@ -23,6 +23,10 @@ public abstract class RPCCommand {
             return new RPCCopy(getOptionValue("file"), getOptionValue("fileTo"));
         } else if (command.equals("tail")) {
             return new RPCTail(getOptionValue("file"));
+        } else if (command.equals("remove")) {
+            return new RPCDelete(getOptionValue("file"));
+        } else if (command.equals("list")) {
+            return new RPCList(getOptionValue("file"));
         } else {
             return new RPCNullCommand();
         }
